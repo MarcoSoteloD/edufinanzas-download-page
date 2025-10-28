@@ -3,55 +3,144 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Descargar App Finanzas</title>
+    <title>Descargar EduFinanzas</title>
+    
+    <!-- Carga de la fuente 'Inter' de Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Carga de íconos de Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    
     <style>
+        /* --- Reset y Estilos Base --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f8f9fa; /* Un gris muy suave */
             display: grid;
             place-items: center;
-            min-height: 90vh;
-            text-align: center;
-            background-color: #f4f7f6;
+            min-height: 100vh;
+            padding: 1rem;
+            color: #333;
         }
+
+        /* --- Contenedor Principal (La Tarjeta) --- */
         .container {
             background: #ffffff;
-            padding: 2.5rem;
-            border-radius: 12px;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.05);
+            padding: 2.5rem 3rem;
+            border-radius: 16px; /* Esquinas más redondeadas */
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05), 
+                        0 4px 10px rgba(0, 0, 0, 0.03);
+            max-width: 550px; /* Un poco más ancha */
+            text-align: center;
+            width: 100%;
+            /* Sutil borde para definirla */
+            border: 1px solid #e9ecef;
         }
+
+        /* --- Logo Placeholder "EF" --- */
+        .app-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 20px; /* Estilo 'squircle' de apps */
+            background: linear-gradient(135deg, #4F46E5, #3B82F6); /* Gradiente azul/indigo */
+            color: white;
+            display: grid;
+            place-items: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin: 0 auto 1.5rem auto;
+            box-shadow: 0 4px 12px rgba(60, 130, 246, 0.3);
+        }
+
+        /* --- Tipografía --- */
+        h1 {
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: #111;
+            margin-bottom: 0.75rem;
+        }
+
+        /* --- Descripción de la App --- */
+        .description {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #444;
+            text-align: left; /* Mejor para leer párrafos */
+            margin-bottom: 2.5rem;
+        }
+
+        /* --- Botón de Descarga --- */
         .boton-descarga {
-            display: inline-block;
-            background-color: #007AFF; /* Un azul bonito */
+            display: inline-flex; /* Permite alinear el ícono y el texto */
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem; /* Espacio entre ícono y texto */
+            
+            background: linear-gradient(135deg, #007AFF, #0056b3); /* Gradiente azul */
             color: white;
             padding: 1rem 2.5rem;
             text-decoration: none;
-            font-size: 1.25rem;
+            font-size: 1.15rem;
             font-weight: 600;
-            border-radius: 8px;
-            transition: background-color 0.3s;
+            border-radius: 10px;
+            
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 122, 255, 0.3);
         }
+
         .boton-descarga:hover {
-            background-color: #0056b3;
+            transform: translateY(-3px); /* Efecto de 'levantar' */
+            box-shadow: 0 8px 20px rgba(0, 122, 255, 0.4);
         }
-        p {
-            font-size: 1.1rem;
-            color: #333;
+
+        .boton-descarga .fab {
+            font-size: 1.25rem; /* Tamaño del ícono de Android */
+        }
+
+        /* --- Nota al pie --- */
+        .nota-instalacion {
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            color: #888;
         }
     </style>
 </head>
 <body>
+
     <div class="container">
-        <h1>App Finanzas Estudiantes</h1>
-        <p>¡Gracias por probar nuestro proyecto!</p>
         
+        <!-- El logo placeholder "EF" -->
+        <div class="app-icon">EF</div>
+
+        <h1>EduFinanzas</h1>
+        
+        <!-- Aquí está la descripción que me diste -->
+        <p class="description">
+            EduFinanzas es una app educativa y de gestión financiera para estudiantes de nivel medio superior y superior. A través de funcionalidades como presupuestos por metas, educación gamificada, retos con recompensas y conexión con instituciones educativas, ayuda a mejorar los hábitos financieros desde una etapa temprana.
+        </p>
+        
+        <!-- 
+          ¡IMPORTANTE! 
+          Pega aquí tu enlace de GitHub Release. 
+          Debe ser el enlace largo que copiaste.
+        -->
         <a href="https://github.com/MarcoSoteloD/edufinanzas-download-page/releases/download/v1.0/app-gastos.apk" class="boton-descarga" download>
-            Descargar APK
+            <i class="fab fa-android"></i> <!-- Ícono de Android -->
+            Descargar para Android
         </a>
         
-        <p style="margin-top: 2rem; font-size: 0.9rem; color: #777;">
+        <p class="nota-instalacion">
             <b>Nota:</b> Deberás habilitar la "Instalación de fuentes desconocidas" en Android.
         </p>
     </div>
-</body>
 
+</body>
 </html>
