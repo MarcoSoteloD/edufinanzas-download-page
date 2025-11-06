@@ -1,464 +1,204 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EduFinanzas - Tu App de Finanzas Estudiantil</title>
-    
-    <!-- Carga de la fuente 'Inter' de Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-    
-    <!-- Carga de íconos de Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-    
-    <style>
-        /* --- Variables de Color (Tema Morado) --- */
-        :root {
-            --primary-purple: #9B27AD;
-            --primary-purple-dark: #7a1f8a;
-            --light-gray-bg: #f8f9fa;
-            --white-bg: #ffffff;
-            --text-dark: #212529;
-            --text-light: #6c757d;
-            --border-color: #e9ecef;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vista del Proyecto</title>
 
-        /* --- Reset y Estilos Base --- */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+  <style>
+    :root {
+      --white-bg: #fff;
+      --bg-dark: #121212;
+      --accent: #9C27B0;
+    }
 
-        html {
-            scroll-behavior: smooth;
-        }
+    body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg-dark);
+      color: #fff;
+      font-family: 'Poppins', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
 
-        body {
-            font-family: 'Inter', -apple-system, sans-serif;
-            background-color: var(--white-bg);
-            color: var(--text-dark);
-            line-height: 1.6;
-        }
+    header {
+      text-align: center;
+      margin-top: 2rem;
+    }
 
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 1.5rem;
-        }
+    header h1 {
+      font-size: 2rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
 
-        h1, h2, h3 {
-            font-weight: 700;
-            line-height: 1.2;
-            margin-bottom: 1rem;
-        }
+    header p {
+      color: #bbb;
+      font-size: 1rem;
+      margin: 0;
+    }
 
-        h1 { font-size: 3rem; }
-        h2 { font-size: 2.25rem; color: var(--text-dark); text-align: center; margin-bottom: 3rem; }
-        h3 { font-size: 1.25rem; }
+    /* --- Mockup de Teléfono --- */
+    .phone-mockup {
+      width: 280px;
+      height: 560px;
+      background: #1e1e1e;
+      border-radius: 40px;
+      margin: 3rem auto 0 auto;
+      border: 12px solid #111;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+      position: relative;
+      overflow: hidden;
+    }
 
-        section {
-            padding: 5rem 0;
-        }
+    .phone-mockup::before {
+      content: '';
+      width: 140px;
+      height: 25px;
+      background: #111;
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      border-bottom-left-radius: 15px;
+      border-bottom-right-radius: 15px;
+      z-index: 5;
+    }
 
-        /* --- Header (Barra de Navegación) --- */
-        .navbar {
-            background: var(--white-bg);
-            padding: 1.5rem 0;
-            border-bottom: 1px solid var(--border-color);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
+    /* --- Pantalla del teléfono --- */
+    .phone-screen {
+      background: var(--white-bg);
+      width: 100%;
+      height: 100%;
+      border-radius: 28px;
+      position: relative;
+      overflow: hidden;
+    }
 
-        .navbar .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+    /* --- Imágenes del carrusel --- */
+    .carousel-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 28px;
+      opacity: 0;
+      transition: opacity 0.8s ease;
+      background: #fff;
+    }
 
-        .logo {
-            text-decoration: none;
-        }
+    .carousel-image.active {
+      opacity: 1;
+    }
 
-        .logo img {
-            height: 50px; /* Altura del logo en la barra */
-            width: auto;
-            display: block;
-        }
+    /* --- Botones del carrusel --- */
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      border: none;
+      font-size: 1.2rem;
+      padding: 0.5rem 0.75rem;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      z-index: 10;
+    }
 
-        .nav-button {
-            background-color: var(--primary-purple);
-            color: white;
-            padding: 0.75rem 1.5rem;
-            text-decoration: none;
-            font-weight: 600;
-            border-radius: 8px;
-            transition: background-color 0.3s ease;
-        }
+    .carousel-btn:hover {
+      background: rgba(255, 255, 255, 0.4);
+    }
 
-        .nav-button:hover {
-            background-color: var(--primary-purple-dark);
-        }
+    .carousel-btn.prev { left: -45px; }
+    .carousel-btn.next { right: -45px; }
 
-        /* --- Sección Hero --- */
-        .hero {
-            background-color: var(--light-gray-bg);
-            padding: 5rem 0;
-            text-align: center;
-        }
+    @media (max-width: 768px) {
+      .carousel-btn.prev { left: -30px; }
+      .carousel-btn.next { right: -30px; }
+    }
 
-        .hero h1 {
-            color: var(--primary-purple);
-            font-weight: 800;
-        }
+    /* --- Indicadores de posición --- */
+    .carousel-indicators {
+      display: flex;
+      justify-content: center;
+      margin-top: 1rem;
+      gap: 8px;
+    }
 
-        .hero-subtitle {
-            font-size: 1.2rem;
-            color: var(--text-light);
-            max-width: 650px;
-            margin: 0 auto 2.5rem auto;
-        }
+    .indicator {
+      width: 10px;
+      height: 10px;
+      background: #666;
+      border-radius: 50%;
+      transition: background 0.3s ease;
+      cursor: pointer;
+    }
 
-        .cta-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.75rem;
-            background: linear-gradient(135deg, var(--primary-purple), #c039db);
-            color: white;
-            padding: 1.25rem 3rem;
-            text-decoration: none;
-            font-size: 1.25rem;
-            font-weight: 700;
-            border-radius: 12px;
-            transition: all 0.3s ease;
-            box-shadow: 0 8px 20px rgba(155, 39, 173, 0.3);
-        }
-
-        .cta-button:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 25px rgba(155, 39, 173, 0.4);
-        }
-
-        /* --- Mockup de Teléfono (CSS) --- */
-        .phone-mockup {
-            width: 280px;
-            height: 560px;
-            background: #1e1e1e;
-            border-radius: 40px;
-            margin: 3rem auto 0 auto;
-            border: 12px solid #111;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-            position: relative;
-        }
-
-        .phone-mockup::before { /* Notch */
-            content: '';
-            width: 140px;
-            height: 25px;
-            background: #111;
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            border-bottom-left-radius: 15px;
-            border-bottom-right-radius: 15px;
-        }
-
-        .phone-screen {
-            background: var(--white-bg); /* Cambiado a blanco para que el logo resalte */
-            width: 100%;
-            height: 100%;
-            border-radius: 28px;
-            display: grid;
-            place-items: center;
-            padding: 2rem; /* Espacio para que el logo respire */
-        }
-
-        .phone-screen img {
-            width: 150px; /* Tamaño del logo dentro del mockup */
-            height: auto;
-        }
-
-        /* --- Carrusel dentro del mockup --- */
-        .phone-screen {
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .carousel-image {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 28px;
-            opacity: 0;
-            transition: opacity 0.8s ease;
-        }
-        
-        .carousel-image.active {
-            opacity: 1;
-        }
-        
-        /* Botones del carrusel */
-        .carousel-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(255, 255, 255, 0.15);
-            color: white;
-            border: none;
-            font-size: 1.2rem;
-            padding: 0.5rem 0.75rem;
-            border-radius: 50%;
-            cursor: pointer;
-            transition: background 0.3s ease;
-        }
-        
-        .carousel-btn:hover {
-            background: rgba(255, 255, 255, 0.3);
-        }
-        
-        .carousel-btn.prev { left: -45px; } /* Mueve los botones ligeramente fuera del borde */
-        .carousel-btn.next { right: -45px; }
-        
-        @media (max-width: 768px) {
-            .carousel-btn.prev { left: -30px; }
-            .carousel-btn.next { right: -30px; }
-        }
-
-        /* --- Sección de Características --- */
-        .features {
-            background-color: var(--white-bg);
-        }
-
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-
-        .feature-card {
-            background: #ffffff;
-            padding: 2.5rem 2rem;
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
-            text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
-        }
-
-        .feature-icon {
-            font-size: 2.5rem;
-            color: var(--primary-purple);
-            margin-bottom: 1.5rem;
-        }
-
-        .feature-card p {
-            color: var(--text-light);
-            font-size: 0.95rem;
-        }
-
-        /* --- Sección de Tecnologías --- */
-        .tech-stack {
-            background-color: var(--light-gray-bg);
-        }
-
-        .tech-logos {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 2.5rem;
-        }
-
-        .tech-badge {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: var(--text-light);
-        }
-
-        .tech-badge i {
-            font-size: 3.5rem;
-            margin-bottom: 0.75rem;
-            color: #555; /* Iconos en gris neutro */
-        }
-        
-        /* Colores específicos para logos */
-        .tech-badge .fa-react { color: #61DAFB; }
-        .tech-badge .fa-js-square { color: #F7DF1E; }
-        .tech-badge .fa-layer-group { color: #000020; }
-
-
-        /* --- Footer --- */
-        .footer {
-            background-color: var(--text-dark);
-            color: var(--light-gray-bg);
-            text-align: center;
-            padding: 3rem 0;
-            margin-top: 3rem;
-        }
-
-    </style>
+    .indicator.active {
+      background: var(--accent);
+    }
+  </style>
 </head>
+
 <body>
+  <header>
+    <h1>Vista de la App</h1>
+    <p>Desliza entre las pantallas del proyecto</p>
+  </header>
 
-    <!-- --- Barra de Navegación --- -->
-    <header class="navbar">
-        <div class="container">
-            <a href="#" class="logo">
-                <img src="logo.svg" alt="Logo EduFinanzas">
-            </a>
+  <div class="phone-mockup">
+    <div class="phone-screen">
+      <img src="screen1.jpg" class="carousel-image active" alt="Captura 1" />
+      <img src="screen2.jpg" class="carousel-image" alt="Captura 2" />
+      <img src="screen3.jpg" class="carousel-image" alt="Captura 3" />
+      <button class="carousel-btn prev">&#10094;</button>
+      <button class="carousel-btn next">&#10095;</button>
+    </div>
+  </div>
 
-            <a href="https://github.com/MarcoSoteloD/edufinanzas-download-page/releases/download/v2.1/EduFinanzas.apk" class="nav-button" download>
-                Descargar
-            </a>
-        </div>
-    </header>
+  <div class="carousel-indicators">
+    <div class="indicator active"></div>
+    <div class="indicator"></div>
+    <div class="indicator"></div>
+  </div>
 
-    <main>
+  <script>
+    const images = document.querySelectorAll('.carousel-image');
+    const prevBtn = document.querySelector('.carousel-btn.prev');
+    const nextBtn = document.querySelector('.carousel-btn.next');
+    const indicators = document.querySelectorAll('.indicator');
+    let index = 0;
 
-        <!-- --- Sección Hero --- -->
-        <section class="hero">
-            <div class="container">
-                <h1>EduFinanzas</h1>
-                <p class="hero-subtitle">
-                    Mejora tus hábitos financieros desde una etapa temprana con nuestra app educativa y de gestión para estudiantes.
-                </p>
+    function showImage(i) {
+      images.forEach((img, idx) => {
+        img.classList.toggle('active', idx === i);
+        indicators[idx].classList.toggle('active', idx === i);
+      });
+    }
 
-                <a href="https://github.com/MarcoSoteloD/edufinanzas-download-page/releases/download/v2.1/EduFinanzas.apk" class="cta-button" download>
-                    <i class="fab fa-android"></i>
-                    Descargar para Android
-                </a>
+    nextBtn.addEventListener('click', () => {
+      index = (index + 1) % images.length;
+      showImage(index);
+    });
 
-                <!-- Mockup del teléfono -->
-                <div class="phone-mockup">
-                    <div class="phone-screen">
-                        <img src="screen1.jpg" alt="Captura 1 de EduFinanzas" class="carousel-image active">
-                        <img src="screen2.jpg" alt="Captura 2 de EduFinanzas" class="carousel-image">
-                        <img src="screen3.jpg" alt="Captura 3 de EduFinanzas" class="carousel-image">
-                    </div>
+    prevBtn.addEventListener('click', () => {
+      index = (index - 1 + images.length) % images.length;
+      showImage(index);
+    });
 
-                    <!-- Controles del carrusel -->
-                    <button class="carousel-btn prev"><i class="fas fa-chevron-left"></i></button>
-                    <button class="carousel-btn next"><i class="fas fa-chevron-right"></i></button>
-                </div>
-            </div>
-        </section>
-
-        <!-- --- Sección de Características --- -->
-        <section class="features" id="features">
-            <div class="container">
-                <h2>Características Principales</h2>
-                <div class="feature-grid">
-                    
-                    <div class="feature-card">
-                        <i class="fas fa-piggy-bank feature-icon"></i>
-                        <h3>Presupuestos por Metas</h3>
-                        <p>Aprende a ahorrar de forma inteligente estableciendo metas y presupuestos claros.</p>
-                    </div>
-
-                    <div class="feature-card">
-                        <i class="fas fa-gamepad feature-icon"></i>
-                        <h3>Educación Gamificada</h3>
-                        <p>Domina conceptos financieros a través de lecciones interactivas y divertidas.</p>
-                    </div>
-
-                    <div class="feature-card">
-                        <i class="fas fa-trophy feature-icon"></i>
-                        <h3>Retos y Recompensas</h3>
-                        <p>Completa retos de ahorro y finanzas para ganar recompensas y fortalecer tus hábitos.</p>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-
-        <!-- --- Sección de Tecnologías --- -->
-        <section class="tech-stack" id="tech">
-            <div class="container">
-                <h2>Hecho con Tecnología de Punta</h2>
-                <div class="tech-logos">
-                    
-                    <div class="tech-badge">
-                        <i class="fab fa-react"></i>
-                        <span>React Native</span>
-                    </div>
-                    
-                    <div class="tech-badge">
-                        <!-- No hay ícono oficial de Expo, usamos este como placeholder -->
-                        <i class="fas fa-layer-group"></i>
-                        <span>Expo</span>
-                    </div>
-
-                    <div class="tech-badge">
-                        <i class="fab fa-js-square"></i>
-                        <span>JavaScript</span>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- --- Footer --- -->
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2025 EduFinanzas. Todos los derechos reservados.</p>
-            <p>Un Proyecto de Innovación Digital.</p>
-        </div>
-    </footer>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const images = document.querySelectorAll(".carousel-image");
-            const prevBtn = document.querySelector(".carousel-btn.prev");
-            const nextBtn = document.querySelector(".carousel-btn.next");
-            let current = 0;
-        
-            const showImage = (index) => {
-                images.forEach((img, i) => img.classList.toggle("active", i === index));
-            };
-        
-            const nextImage = () => {
-                current = (current + 1) % images.length;
-                showImage(current);
-            };
-        
-            const prevImage = () => {
-                current = (current - 1 + images.length) % images.length;
-                showImage(current);
-            };
-        
-            nextBtn.addEventListener("click", nextImage);
-            prevBtn.addEventListener("click", prevImage);
-        
-            // Cambio automático cada 3 segundos
-            setInterval(nextImage, 3000);
-        });
-    </script>
-    </body>
+    indicators.forEach((dot, idx) => {
+      dot.addEventListener('click', () => {
+        index = idx;
+        showImage(index);
+      });
+    });
+  </script>
+</body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
