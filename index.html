@@ -182,6 +182,55 @@
             height: auto;
         }
 
+        /* --- Carrusel dentro del mockup --- */
+        .phone-screen {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .carousel-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 28px;
+            opacity: 0;
+            transition: opacity 0.8s ease;
+        }
+        
+        .carousel-image.active {
+            opacity: 1;
+        }
+        
+        /* Botones del carrusel */
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            border: none;
+            font-size: 1.2rem;
+            padding: 0.5rem 0.75rem;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .carousel-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        .carousel-btn.prev { left: -45px; } /* Mueve los botones ligeramente fuera del borde */
+        .carousel-btn.next { right: -45px; }
+        
+        @media (max-width: 768px) {
+            .carousel-btn.prev { left: -30px; }
+            .carousel-btn.next { right: -30px; }
+        }
+
         /* --- Sección de Características --- */
         .features {
             background-color: var(--white-bg);
@@ -296,8 +345,14 @@
                 <!-- Mockup del teléfono -->
                 <div class="phone-mockup">
                     <div class="phone-screen">
-                        <img src="logo.svg" alt="Logo EduFinanzas en la app">
+                        <img src="screen1.jpg" alt="Captura 1 de EduFinanzas" class="carousel-image active">
+                        <img src="screen2.jpg" alt="Captura 2 de EduFinanzas" class="carousel-image">
+                        <img src="screen3.jpg" alt="Captura 3 de EduFinanzas" class="carousel-image">
                     </div>
+
+                    <!-- Controles del carrusel -->
+                    <button class="carousel-btn prev"><i class="fas fa-chevron-left"></i></button>
+                    <button class="carousel-btn next"><i class="fas fa-chevron-right"></i></button>
                 </div>
             </div>
         </section>
@@ -366,8 +421,37 @@
         </div>
     </footer>
 
-</body>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const images = document.querySelectorAll(".carousel-image");
+            const prevBtn = document.querySelector(".carousel-btn.prev");
+            const nextBtn = document.querySelector(".carousel-btn.next");
+            let current = 0;
+        
+            const showImage = (index) => {
+                images.forEach((img, i) => img.classList.toggle("active", i === index));
+            };
+        
+            const nextImage = () => {
+                current = (current + 1) % images.length;
+                showImage(current);
+            };
+        
+            const prevImage = () => {
+                current = (current - 1 + images.length) % images.length;
+                showImage(current);
+            };
+        
+            nextBtn.addEventListener("click", nextImage);
+            prevBtn.addEventListener("click", prevImage);
+        
+            // Cambio automático cada 3 segundos
+            setInterval(nextImage, 3000);
+        });
+    </script>
+    </body>
 </html>
+
 
 
 
